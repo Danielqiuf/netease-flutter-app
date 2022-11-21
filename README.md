@@ -1,6 +1,6 @@
 # flt_proj
 
-A new Flutter project.
+基于Flutter开发的仿网易云app（个人版
 
 ## Getting Started
 
