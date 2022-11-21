@@ -1,6 +1,6 @@
 # flt_proj
 
-基于Flutter开发的仿网易云app（个人版
+基于Flutter + bloc + cubit数据流 开发的仿网易云app（个人版
 
 ## Getting Started
 
