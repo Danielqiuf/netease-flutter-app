@@ -1,5 +1,3 @@
-import 'package:flt_proj/app/routes/app_pages.dart';
-import 'package:flt_proj/app/routes/app_search.dart';
 import 'package:flt_proj/app/routes/home/view/home_page.dart';
 import 'package:flt_proj/app/routes/routes.dart';
 import 'package:flt_proj/wigets/search.dart';
@@ -14,6 +12,7 @@ void main() {
 }
 
 class App extends StatefulWidget {
+  const App({super.key});
   @override
   _AppMain createState() => _AppMain();
 }
