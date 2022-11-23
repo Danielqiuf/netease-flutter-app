@@ -40,7 +40,6 @@ class HomePage extends StatelessWidget {
             CupertinoButton(
               color: ColorThemes.colorBlack,
               onPressed: () {
-                Navigator.of(context).pushNamed('/search-app');
               },
               pressedOpacity: 0.6,
               child: const Text('跳转到个人中心',

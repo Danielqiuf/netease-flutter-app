@@ -19,7 +19,9 @@ class _SearchWidgetState extends State<SearchWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          Navigator.of(context).pushNamed('/search-app');
+          Navigator.of(context).pushNamed('/search-app', arguments: {
+            'title':'我是222'
+          });
         },
         child: Container(
           height: 40,

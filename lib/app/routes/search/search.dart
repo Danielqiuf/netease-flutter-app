@@ -2,12 +2,23 @@ import 'package:flt_proj/app/stores/search_fields.dart';
 import 'package:flt_proj/app/theme/my_colors.dart';
 import 'package:flutter/material.dart';
 
-class AppSearchPage extends StatelessWidget {
-  static const String routeName = '/app-search';
-  const AppSearchPage({super.key});
+class AppSearch extends StatefulWidget {
+  AppSearch({ Key? key, this.arguments }): super(key: key);
+
+  final Object? arguments;
+
+  @override
+  AppSearchPage createState() => AppSearchPage();
+}
+class AppSearchPage extends State<AppSearch> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    print('argumentsss>>>${widget.arguments}');
     return Scaffold(
       backgroundColor: ColorThemes.colorBlack,
       appBar: AppBar(
