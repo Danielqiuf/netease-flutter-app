@@ -2,9 +2,9 @@ import 'package:flt_proj/app/routes/router_keys.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
-  final Map<String, dynamic> _routes = {};
+  late final Map<String, dynamic> _routes;
 
-  AppRouter() {
+  AppRouter(): _routes = {} {
     _routes.addAll(mapForBuilder());
   }
 
@@ -12,7 +12,7 @@ class AppRouter {
     final Object? arguments = settings.arguments;
     final String? name = settings.name;
     final dynamic pageContentBuilder = _routes[name];
-  print('routear>>>$settings');
+  print('routear>>>${pageContentBuilder.runtimeType}');
     if (pageContentBuilder != null && pageContentBuilder is PageContentRouteBuilder) {
       return pageContentBuilder(arguments);
     }

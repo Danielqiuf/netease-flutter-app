@@ -15,7 +15,7 @@ typedef PageContentRouteBuilder = PageRouteBuilder Function(Object? arguments);
 
 Map<String, dynamic> mapForBuilder() => {
   RouterKeys.homeApp: (context, { arguments }) => const HomePage(),
-  RouterKeys.searchApp: (arguments) => PageRouteUtil.pushAnimation( 
+  RouterKeys.searchApp: (arguments) => PageRouteUtil.pushAnimation(
     named: 'fade',
     duration: 200,
     page: AppSearch(arguments: arguments)
