@@ -5,7 +5,7 @@ import 'package:flt_proj/constans/service_json.dart';
 class MockServices {
   static Future<ExternalBanner> getDJBanner() async {
     return await CommonUtil.jsonDecoder(JsonServiceConstants.djBanner).then((value) {
-      // print('valuelvaue>>$value');
+      print('valuelvaue>>$value');
       return ExternalBanner.fromJson(value);
     });
   }

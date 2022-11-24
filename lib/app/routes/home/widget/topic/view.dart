@@ -1,7 +1,13 @@
 import 'package:flt_proj/app/theme/my_colors.dart';
 import 'package:flutter/material.dart';
 
-class TopicView extends StatelessWidget {
+class TopicView extends StatefulWidget {
+  const TopicView({Key? key}): super(key: key);
+
+  @override
+  TopicViewState createState() => TopicViewState();
+}
+class TopicViewState extends State<TopicView> {
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +20,18 @@ class TopicView extends StatelessWidget {
       color: ColorThemes.foregoundColor,
       child: Stack(
         children: [
-          
+          Positioned(
+            top: 10,
+            right: 0, 
+            child: Image.asset("assets/images/toplist_bg.png")),
+          // Positioned(
+          //   top: 0,
+          //   right: 20, 
+          //   child: Image.asset("assets/images/cm8_home_toplist_bottom_bg~iphone.png")),
+          // Column(
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   children: [],
+          // )
         ],
       ),
     );

@@ -64,6 +64,7 @@ class BannerViewState extends State<BannerView> {
       ]),
     );
   }
+  
   @override
   Widget build(BuildContext context) {
     final bannerList = context.select((HomeBloc bloc) => bloc.state.bannerList);

@@ -16,14 +16,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     ExternalBannerEvent event, 
     Emitter<HomeState> emit
   ) async {
-    print('fetchbanner>>>');
     try {
+      print('bannerReturn>');
       ExternalBanner banner = await MockServices.getDJBanner();
-      print('bannerReturn>>>${banner.data}');
+      
       emit(HomeState.changeBanner(
         banner.data
       ));
-    } on Exception catch(ext) {
+    } catch(ext) {
       print('exception>>>>$ext');
     }
   }

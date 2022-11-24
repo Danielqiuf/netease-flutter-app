@@ -1,10 +1,8 @@
-import 'package:flt_proj/app/routes/home/home.dart';
 import 'package:flt_proj/app/theme/my_colors.dart';
 import 'package:flt_proj/wigets/search.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flt_proj/app/routes/home/widget/banner/view.dart';
+import 'package:flt_proj/app/routes/home/widget/topic/view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -17,38 +15,15 @@ class HomePage extends StatelessWidget {
       color: ColorThemes.colorBlack,
       child: ListView.builder(itemBuilder: (BuildContext context, int index) {
         if (index == 0) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const BannerView(),
-                const Text(
-                  'You have pushed the button this many times:',
-                ),
-                Text(
-                  '0',
-                  style: Theme.of(context).textTheme.headline4,
-                ),
-                CupertinoButton(
-                  color: ColorThemes.colorBlack,
-                  onPressed: () {
-                  },
-                  pressedOpacity: 0.6,
-                  child: const Text('跳转到个人中心',
-                      style: TextStyle(color: ColorThemes.colorWhite)),
-                ),
-              ],
-            ),
-          );
-        }
-        return Text('111');
+          return const BannerView();
+        } 
+        return const TopicView();
       }, itemCount: 4, physics: const AlwaysScrollableScrollPhysics())
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<HomeBloc>(context);
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by

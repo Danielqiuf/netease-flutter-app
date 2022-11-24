@@ -7,6 +7,8 @@ class CommonUtil {
     return await rootBundle.loadString(path).then((value) {
       Map<String, dynamic> map = json.decode(value);
       return map;
+    }).catchError((e) {
+      print('eee>>$e');
     });
   }
 }
