@@ -1,10 +1,21 @@
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:flt_proj/models/common/common.model.dart';
 
 part 'home.model.g.dart';
 
 @JsonSerializable()
-class ExternalBanner {
+class ExternalBanner extends CommonModel<List<ExternalBannerItem>> {
   ExternalBanner();
+
+  factory ExternalBanner.fromJson(Map<String, dynamic> json) => _$ExternalBannerFromJson(json);
+
+  toJson() => _$ExternalBannerToJson(this);
+}
+
+@JsonSerializable()
+class ExternalBannerItem {
+  ExternalBannerItem();
 
   String? bannerId;
   String? pic;
@@ -16,7 +27,11 @@ class ExternalBanner {
   String? encodeId;
   String? url;
 
-  factory ExternalBanner.fromJson(Map<String, dynamic> json) => _$ExternalBannerFromJson(json);
+  Color bgColor() {
+    return Colors.red;
+  }
 
-  toJson() => _$ExternalBannerToJson(this);
+  factory ExternalBannerItem.fromJson(Map<String, dynamic> json) => _$ExternalBannerItemFromJson(json);
+
+  toJson() => _$ExternalBannerItemToJson(this);
 }

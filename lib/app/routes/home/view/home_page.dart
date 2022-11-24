@@ -1,9 +1,8 @@
-import 'package:flt_proj/app/routes/home/cubit/home_cubit.dart';
+import 'package:flt_proj/app/routes/home/home.dart';
 import 'package:flt_proj/app/theme/my_colors.dart';
 import 'package:flt_proj/wigets/search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flt_proj/app/routes/home/home.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flt_proj/app/routes/home/widget/banner/view.dart';
 
@@ -12,20 +11,22 @@ class HomePage extends StatelessWidget {
 
 
    Widget buildBody() {
-     
-    return BlocBuilder<HomeBloc, int>(builder: (context, count) {
-      return ListView.builder(itemBuilder: (BuildContext context, int index) {
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      color: ColorThemes.colorBlack,
+      child: ListView.builder(itemBuilder: (BuildContext context, int index) {
         if (index == 0) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                BannerView(),
+                const BannerView(),
                 const Text(
                   'You have pushed the button this many times:',
                 ),
                 Text(
-                  '$count',
+                  '0',
                   style: Theme.of(context).textTheme.headline4,
                 ),
                 CupertinoButton(
@@ -41,8 +42,8 @@ class HomePage extends StatelessWidget {
           );
         }
         return Text('111');
-      }, itemCount: 4, physics: const AlwaysScrollableScrollPhysics());
-    });
+      }, itemCount: 4, physics: const AlwaysScrollableScrollPhysics())
+    );
   }
 
   @override
@@ -84,8 +85,6 @@ class HomePage extends StatelessWidget {
       body: buildBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () { 
-          print('add${bloc.add}');
-          bloc.add(HomeIncrementPressed());
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
