@@ -24,14 +24,16 @@ class TopicViewState extends State<TopicView> {
             top: 10,
             right: 0, 
             child: Image.asset("assets/images/toplist_bg.png")),
-          // Positioned(
-          //   top: 0,
-          //   right: 20, 
-          //   child: Image.asset("assets/images/cm8_home_toplist_bottom_bg~iphone.png")),
-          // Column(
-          //   crossAxisAlignment: CrossAxisAlignment.start,
-          //   children: [],
-          // )
+          Positioned(
+            top: 0,
+            right: 20, 
+            child: Image.asset("assets/images/toplist_bottom_bg.png")),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('123213')
+            ],
+          )
         ],
       ),
     );
