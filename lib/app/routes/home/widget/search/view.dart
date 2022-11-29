@@ -1,13 +1,13 @@
 import 'package:flt_proj/app/theme/my_colors.dart';
 import 'package:flutter/material.dart';
 
-class SearchWidget extends StatefulWidget {
-  const SearchWidget({super.key});
+class SearchView extends StatefulWidget {
+  const SearchView({super.key});
   @override
-  State<SearchWidget> createState() => _SearchWidgetState();
+  SearchViewState createState() => SearchViewState();
 }
 
-class _SearchWidgetState extends State<SearchWidget> {
+class SearchViewState extends State<SearchView> {
   String keyword = '我们的决心永远在一起~';
 
   @override
@@ -19,9 +19,8 @@ class _SearchWidgetState extends State<SearchWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          Navigator.of(context).pushNamed('/search-app', arguments: {
-            'title':'我是222'
-          });
+          Navigator.of(context)
+              .pushNamed('/search-app', arguments: {'title': '我是222'});
         },
         child: Container(
           height: 40,
