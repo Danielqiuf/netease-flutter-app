@@ -15,7 +15,7 @@ class TopicViewState extends State<TopicView> {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       decoration: const BoxDecoration(
-        color: ColorThemes.foregoundColor,
+        color: ColorThemes.colorBlack,
         border:
             Border(bottom: BorderSide(color: ColorThemes.divider, width: 1)),
       ),

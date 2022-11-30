@@ -1,9 +1,12 @@
 part of 'home_bloc.dart';
 
-abstract class HomeEvent {
+abstract class HomeEvent extends Equatable {
   const HomeEvent();
+
+  @override
+  List<Object> get props => [];
 }
 
-class ExternalBannerEvent extends HomeEvent {
-  const ExternalBannerEvent();
+class HomeSourceEvent extends HomeEvent {
+  const HomeSourceEvent();
 }

@@ -7,18 +7,20 @@ part 'home_state.dart';
 part 'home_event.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc() : super(const HomeState.initialBanner()) {
-    on<ExternalBannerEvent>(onFetchBannerList);
+  HomeBloc() : super(const HomeState()) {
+    on<HomeSourceEvent>(onFetchHomeDataSource);
   }
 
-  void onFetchBannerList(
-      ExternalBannerEvent event, Emitter<HomeState> emit) async {
+  Future<void> onFetchHomeDataSource(
+      HomeSourceEvent event, Emitter<HomeState> emit) async {
     try {
-      ExternalBanner banner = await MockServices.getDJBanner();
+      MusicWrap? wrap = await MockServices.getHomeDataSource();
+      ExternalBanner? banner = await MockServices.getDJBanner();
 
-      emit(HomeState.changeBanner(banner.data));
-    } catch (ext) {
-      print('exception>>>>$ext');
+      return emit(state.copyWith(
+          bannerList: banner.data, musicItem: wrap.data?.blocks?[1]));
+    } on Exception catch (ext) {
+      print('exc>>>>>$ext');
     }
   }
 }
