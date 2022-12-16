@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
-import 'package:flt_proj/app/routes/home/models/home.model.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flt_proj/app/routes/home/models/home.model.dart';
 import 'package:flt_proj/services/mock_services.dart';
 
-part 'home_state.dart';
 part 'home_event.dart';
+part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(const HomeState()) {
@@ -22,5 +22,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     } on Exception catch (ext) {
       print('exc>>>>>$ext');
     }
+  }
+
+  @override
+  Future<void> close() async {
+    super.close();
   }
 }

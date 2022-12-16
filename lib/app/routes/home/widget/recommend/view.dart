@@ -1,13 +1,9 @@
 import 'package:flt_proj/app/routes/home/bloc/home_bloc.dart';
-import 'package:flt_proj/app/routes/home/models/home.model.dart';
 import 'package:flt_proj/app/routes/home/widget/recommend/ritem.dart';
 import 'package:flt_proj/app/theme/my_colors.dart';
 import 'package:flt_proj/app/widgets/refresh_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
-import 'dart:convert';
-
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class RecommendView extends StatefulWidget {
@@ -18,9 +14,13 @@ class RecommendView extends StatefulWidget {
 }
 
 class RecommendViewState extends State<RecommendView> {
+  HomeBloc? homeBloc;
+
   @override
   void initState() {
     super.initState();
+    homeBloc = BlocProvider.of<HomeBloc>(context);
+    super.didChangeDependencies();
   }
 
   Widget _buildTitleContainer(BuildContext context) {
@@ -104,55 +104,62 @@ class RecommendViewState extends State<RecommendView> {
     double size = MediaQuery.of(context).size.width;
     double itemSie = (size - 70) / 3.0;
 
-    return BlocBuilder<HomeBloc, HomeState>(builder: ((context, state) {
-      print('state>>>${state.musicItem}');
-      return Container(
-        padding: const EdgeInsets.only(bottom: 20),
-        margin: const EdgeInsets.only(bottom: 20),
-        color: ColorThemes.colorBlack,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: const EdgeInsets.only(
-                  left: 15, right: 15, top: 20, bottom: 10),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _buildTitleContainer(context),
-                    _buildRightContainer(context)
-                  ]),
-            ),
-            if (state.musicItem?.creatives != null &&
-                state.musicItem?.creatives?.isNotEmpty == true)
-              SizedBox(
-                width: size,
-                height: itemSie + 45,
-                child: RefreshIndicatorWidget(
-                  controller: state.musicItem!.controller,
-                  onLoading: () {
-                    print('onLoading');
-                    Future.delayed(const Duration(seconds: 3), () {
-                      state.musicItem!.controller.loadComplete();
-                    });
-                  },
-                  footer: _buildFooter(),
-                  scrollDirection: Axis.horizontal,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: state.musicItem!.creatives!.map((e) {
-                        return Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: RItemView(item: e, size: itemSie));
-                      }).toList(),
-                    ),
-                  ),
+    return BlocConsumer<HomeBloc, HomeState>(
+        listener: (context, state) {},
+        builder: ((context, state) {
+          return Container(
+            padding: const EdgeInsets.only(bottom: 20),
+            margin: const EdgeInsets.only(bottom: 20),
+            color: ColorThemes.colorBlack,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(
+                      left: 15, right: 15, top: 20, bottom: 10),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _buildTitleContainer(context),
+                        _buildRightContainer(context)
+                      ]),
                 ),
-              )
-          ],
-        ),
-      );
-    }));
+                if (state.musicItem?.creatives != null &&
+                    state.musicItem?.creatives?.isNotEmpty == true)
+                  SizedBox(
+                    width: size,
+                    height: itemSie + 45,
+                    child: RefreshIndicatorWidget(
+                      controller: state.musicItem!.controller,
+                      onLoading: () {
+                        print('onLoading');
+                        Future.delayed(const Duration(seconds: 3), () {
+                          state.musicItem!.controller.loadComplete();
+                        });
+                      },
+                      footer: _buildFooter(),
+                      scrollDirection: Axis.horizontal,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: state.musicItem!.creatives!.map((e) {
+                            return Padding(
+                                padding: const EdgeInsets.only(left: 15),
+                                child: RItemView(item: e, size: itemSie));
+                          }).toList(),
+                        ),
+                      ),
+                    ),
+                  )
+              ],
+            ),
+          );
+        }));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    homeBloc!.close();
   }
 }
